@@ -1,20 +1,20 @@
 # OutlookMsgSaver
 This is a outlook desktop plugin which will mannualy save all emails in selected folder to .msg file. User interface is provided to set the saved folder destination.
 
-VSTO (Visual Studio Tools for Office) Add-in.
+**VSTO (Visual Studio Tools for Office) Add-in.**
 
 Why VSTO? Modern "Web Add-ins" (Office.js) run in a sandbox and generally cannot access the local file system directly to save files without user intervention for every single file. VSTO add-ins (C#/.NET) have full access to the Windows file system and the Outlook Object Model, allowing you to save .msg files programmatically.
 
 Here is a step-by-step guide and the complete source code to create this plugin.
 
-Prerequisites
+## Prerequisites
 OS: Windows (VSTO does not run on Mac).
 
 IDE: Visual Studio 2022 (or 2019).
 
 Workload: During Visual Studio installation, ensure "Office/SharePoint development" is checked.
 
-Step 1: Create the Project
+* Step 1: Create the Project
 Open Visual Studio.
 
 Click Create a new project.
@@ -25,7 +25,7 @@ Select the C# version and click Next.
 
 Name it OutlookMsgSaver and click Create.
 
-Step 2: Add the User Interface (Ribbon)
+* Step 2: Add the User Interface (Ribbon)
 In the Solution Explorer, right-click the project name (OutlookMsgSaver).
 
 Select Add -> New Item.
@@ -46,7 +46,7 @@ Change the Button Name to btnSaveMsg.
 
 (Optional) You can set a large icon using the OfficeImageId property (e.g., set it to FileSave).
 
-Step 3: The Code
+* Step 3: The Code
 Double-click the button you just created in the Designer. This will open MsgSaverRibbon.cs. Replace the contents with the following code.
 
 You will need to add a reference to System.Windows.Forms if it is missing (Right-click Project -> Add Reference -> Assemblies -> Framework -> System.Windows.Forms).
@@ -63,7 +63,7 @@ SaveAs: We use the native mailItem.SaveAs(..., olMSG) method. This preserves the
 
 Memory Management: COM objects (Office Interop) can sometimes cause memory leaks if not released. The Marshal.ReleaseComObject in the finally block ensures we clean up after every email.
 
-Step 4: Run and Test
+* Step 4: Run and Test
 Press F5 in Visual Studio.
 
 This will launch a new instance of Outlook.
@@ -78,7 +78,7 @@ Select a folder on your Desktop.
 
 Check the folder to see your .msg files appear.
 
-How to Deploy
+## How to Deploy
 To give this to another user:
 
 In Visual Studio, right-click the project -> Publish.
